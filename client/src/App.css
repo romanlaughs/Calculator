@@ -1,0 +1,25 @@
+/* .driver-component {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  border-color: black;
+  border-style: solid;
+  border-width: medium;
+  border-radius: 5px;
+  overflow-y: scroll;
+  white-space: nowrap;
+}
+
+@media (min-width: 600px) {
+  .driver-component {
+    height: 100%;
+    width: 50%;
+    margin: auto;
+    border-color: blue;
+    border-style: solid;
+    border-width: medium;
+    border-radius: 5px;
+    overflow-y: scroll;
+    white-space: nowrap;
+  }
+} */

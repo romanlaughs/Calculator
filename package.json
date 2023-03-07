@@ -1,0 +1,96 @@
+{
+  "name": "rpp2205-atelier-new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "server-dev": "npx nodemon --watch server server/index.js",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "client-dev": "npx webpack --watch",
+    "build": "npx webpack --config webpack.config.js --watch"
+  },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/jspm_packages"
+    ],
+    "preset": "jest-puppeteer",
+    "unmockedModulePathPatterns": [
+      "./node_modules/react"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpp2205-boc-quartzite/eco_drive.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpp2205-boc-quartzite/eco_drive/issues"
+  },
+  "homepage": "https://github.com/rpp2205-boc-quartzite/eco_drive#readme",
+  "dependencies": {
+    "@babel/cli": "^7.19.3",
+    "axios": "^1.2.3",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.5",
+    "body-parser": "^1.20.0",
+    "bootstrap": "^5.2.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "css-loader": "^6.7.1",
+    "enzyme": "^3.11.0",
+    "express": "^4.18.1",
+    "html-webpack-plugin": "^5.5.0",
+    "jest-config": "^29.2.1",
+    "jest-environment-jsdom": "^29.2.1",
+    "msw": "^0.47.4",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
+    "style-loader": "^3.3.1",
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.74.0",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/plugin-syntax-jsx": "^7.18.6",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-react": "^7.18.6",
+    "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.2.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^29.2.1",
+    "babel-preset-jest": "^29.2.0",
+    "brotli-gzip-webpack-plugin": "^0.5.0",
+    "jest": "^29.2.1",
+    "jest-mock-axios": "^4.7.0-beta",
+    "jest-puppeteer": "^6.1.1",
+    "nodemon": "^2.0.20",
+    "regenerator-runtime": "^0.13.10",
+    "webpack-cli": "^4.10.0"
+  },
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ]
+}
