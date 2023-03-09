@@ -1,1 +1,5 @@
 node_modules
+
+/bundle.js
+/Users/ncassano/Desktop/Calculator/client/dist/bundle.js
+client/dist/bundle.js.map

@@ -8,25 +8,26 @@ export default function CalcMain() {
   const [currentTotal, updateCurrentTotal] = React.useState('');
   const [history, addToHistory] = React.useState([]);
 
-  const addElementToCalculation = (element) => {
-    var update = currentTotal + element;
-    updateCurrentTotal(update);
-  }
+  // Need to create a separate display for actual display purposes while the currentDiplsay is more of an elemental storage
+  // otherwise the current answer is added to the running total in calculations
 
   const addNumber = (e) => {
     const targetElement = e.target.value
     updateDisplay(targetElement);
-    addElementToCalculation(targetElement);
   }
 
   const addOperator = (e) => {
+    console.log(currentDisplay)
     const targetElement = e.target.value
-    addElementToCalculation(targetElement);
+    var update = currentTotal + currentDisplay + targetElement;
+    updateCurrentTotal(update);
     updateDisplay('')
   }
 
   const getResult = () => {
-    const answer = '' + eval(currentTotal)
+    var update = currentTotal + currentDisplay;
+    updateCurrentTotal(update);
+    const answer = '' + eval(currentTotal + currentDisplay)
     console.log('answer', answer)
     updateDisplay(answer);
     const currentHistory = history;
@@ -44,7 +45,7 @@ export default function CalcMain() {
     <div>
       Calculator App
       <div>
-      <input type = 'text'onChange={addNumber} value={currentDisplay}/>
+      <input type ='text' name='value' onChange={addNumber} value={currentDisplay}/>
        <button value='+' onClick={addOperator}> + </button>
        <button value='-' onClick={addOperator}> - </button>
        <button value='*' onClick={addOperator}> * </button>
