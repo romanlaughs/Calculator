@@ -30,6 +30,7 @@ export default function CalcMain() {
     const answer = '' + eval(currentTotal + currentDisplay)
     console.log('answer', answer)
     updateDisplay(answer);
+    updateCurrentTotal('')
     const currentHistory = history;
     currentHistory.push(answer)
     addToHistory(currentHistory);
