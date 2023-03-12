@@ -8,8 +8,6 @@ export default function CalcMain() {
   const [currentTotal, updateCurrentTotal] = React.useState('');
   const [history, addToHistory] = React.useState([]);
 
-  // Need to create a separate display for actual display purposes while the currentDiplsay is more of an elemental storage
-  // otherwise the current answer is added to the running total in calculations
 
   const addNumber = (e) => {
     const targetElement = e.target.value
@@ -36,6 +34,55 @@ export default function CalcMain() {
     addToHistory(currentHistory);
   }
 
+  const calculateSalary = () => {
+    var money = prompt('Please enter your Hourly Wage')
+    var numCheck = removeCommasAndMakeNumber(money);
+    var salary = (numCheck * 80) * 26;
+    alert(`Your Annual Salary is: $${salary.toFixed(2)}`)
+    updateDisplay('' + salary.toFixed(2))
+    return;
+  }
+
+  const calculateHourly = () => {
+    var money = prompt('Please enter your Annual Salary')
+    var numCheck = removeCommasAndMakeNumber(money);
+    var hourly = (numCheck/26) / 80;
+    alert(`Your Hourly Wage is: $${hourly.toFixed(2)}`)
+    updateDisplay('' + hourly.toFixed(2))
+    return;
+  }
+
+  const removeCommasAndMakeNumber = (string) => {
+    if (typeof string === 'number') {
+      return string;
+    }
+    var result = '';
+    for (let i = 0; i < string.length; i++) {
+      if (string[i] !== ',' && string[i] !== '$' && string[i] !== '%') {
+        result += string[i];
+      }
+    }
+    return Number(result);
+  }
+
+  const gramsToLBS = () => {
+    var grams = prompt('Please enter the weight in grams');
+    var pounds = (removeCommasAndMakeNumber(grams) * 0.00220462);
+    alert(`That is ${pounds.toFixed(2)} pounds!`)
+    updateDisplay('' + pounds.toFixed(2))
+  }
+
+  const getSalePrice = () => {
+    var price = prompt('How much is the item before the disount?');
+    var sale = prompt('How much is the price marked down?');
+    var priceCheck = removeCommasAndMakeNumber(price);
+    var saleCheck = removeCommasAndMakeNumber(sale);
+    var salePrice = priceCheck - (priceCheck * (saleCheck/100));
+    alert(`Your item that is normally $${priceCheck.toFixed(2)}, would be $${salePrice.toFixed(2)} before taxes.`)
+    updateDisplay('' + salePrice.toFixed(2));
+    return;
+  }
+
   const clearValue = () => {
     updateCurrentTotal('');
     updateDisplay('');
@@ -52,6 +99,12 @@ export default function CalcMain() {
        <button value='*' onClick={addOperator}> * </button>
        <button value='/' onClick={addOperator}> / </button>
        <button onClick={clearValue}> C </button>
+
+       <button value='Salary' onClick={calculateSalary}>Annual Salary</button>
+       <button value='Hourly' onClick={calculateHourly}>Hourly Wage</button>
+       <button value='GramsToLBS' onClick={gramsToLBS}>Grams to Pounds</button>
+       <button value='Sale' onClick={getSalePrice}>Get Sale Price</button>
+
 
        <div>Display: {currentDisplay}</div>
 
