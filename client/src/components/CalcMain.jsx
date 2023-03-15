@@ -8,6 +8,14 @@ export default function CalcMain() {
   const [currentTotal, updateCurrentTotal] = React.useState('');
   const [history, addToHistory] = React.useState([]);
 
+  React.useEffect(() => {
+    if (currentDisplay.includes('=')) {
+      var fix = currentDisplay.replace('=', '')
+      console.log('FIX', fix);
+      updateDisplay(fix);
+    }
+  }, [currentDisplay])
+
 
   const addNumber = (e) => {
     const targetElement = e.target.value
@@ -52,6 +60,15 @@ export default function CalcMain() {
     return;
   }
 
+
+  const handleKeyPress = (e) => {
+    console.log('KEY PRESS', e.key)
+    if (e.key === '=') {
+      getResult();
+    }
+  }
+
+
   const removeCommasAndMakeNumber = (string) => {
     if (typeof string === 'number') {
       return string;
@@ -90,25 +107,35 @@ export default function CalcMain() {
 
 
   return (
-    <div>
+    <div onKeyPress={handleKeyPress}>
       Calculator App
       <div>
       <input type ='text' name='value' onChange={addNumber} value={currentDisplay}/>
-       <button value='+' onClick={addOperator}> + </button>
-       <button value='-' onClick={addOperator}> - </button>
-       <button value='*' onClick={addOperator}> * </button>
-       <button value='/' onClick={addOperator}> / </button>
-       <button onClick={clearValue}> C </button>
-
-       <button value='Salary' onClick={calculateSalary}>Annual Salary</button>
-       <button value='Hourly' onClick={calculateHourly}>Hourly Wage</button>
-       <button value='GramsToLBS' onClick={gramsToLBS}>Grams to Pounds</button>
-       <button value='Sale' onClick={getSalePrice}>Get Sale Price</button>
+      <div>
+        <button value='+' onClick={addOperator}> + </button>
+        <button value='-' onClick={addOperator}> - </button>
+        <button value='*' onClick={addOperator}> * </button>
+        <button value='/' onClick={addOperator}> / </button>
+        <button onClick={clearValue}> C </button>
+      </div>
+      <div>
+      <button type='submit' onClick={getResult}> = </button>
+      </div>
+      <div>
+        <button value='Salary' onClick={calculateSalary}>Annual Salary</button>
+      </div>
+      <div>
+        <button value='Hourly' onClick={calculateHourly}>Hourly Wage</button>
+      </div>
+      <div>
+        <button value='GramsToLBS' onClick={gramsToLBS}>Grams to Pounds</button>
+      </div>
+      <div>
+        <button value='Sale' onClick={getSalePrice}>Get Sale Price</button>
+      </div>
 
 
        <div>Display: {currentDisplay}</div>
-
-       <button type='submit' onClick={getResult}> = </button>
 
        <div>Total: {currentTotal}</div>
 
